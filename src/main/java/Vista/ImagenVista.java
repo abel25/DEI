@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Vista;
+import Controlador.ImagenControl;
+import Modelo.Imagen;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -13,11 +15,14 @@ import javax.swing.ImageIcon;
  */
 public class ImagenVista extends javax.swing.JFrame {
 
+    ImagenControl imagencontrol;
+    
     /**
      * Creates new form ImagenVista
      */
     public ImagenVista() {
         initComponents();
+        imagencontrol = new ImagenControl();
     }
 
     /**
@@ -57,8 +62,18 @@ public class ImagenVista extends javax.swing.JFrame {
         );
 
         botonAtras.setText("<");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
 
         botonAdelante.setText(">");
+        botonAdelante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAdelanteActionPerformed(evt);
+            }
+        });
 
         casilla1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -134,11 +149,29 @@ public class ImagenVista extends javax.swing.JFrame {
     private void cargarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarImagenActionPerformed
         // TODO add your handling code here:
         fileChooser.showOpenDialog(this);
-        ImageIcon img = new ImageIcon(fileChooser.getSelectedFile().toString());
-        ImageIcon icon = new ImageIcon(img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-        casilla1.setIcon(icon);
+        
+        imagencontrol.addImagen(new Imagen(fileChooser.getSelectedFile().getPath()));
+        
+        pintarArrayImagen();
     }//GEN-LAST:event_cargarImagenActionPerformed
 
+    private void botonAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAdelanteActionPerformed
+        // TODO add your handling code here:
+        imagencontrol.siguienteImagen();
+        pintarArrayImagen();
+    }//GEN-LAST:event_botonAdelanteActionPerformed
+
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botonAtrasActionPerformed
+
+    public void pintarArrayImagen(){
+        casilla2.setIcon(new ImageIcon(imagencontrol.getCurrentImagen().getPathImagen()));
+        casilla3.setIcon(new ImageIcon(imagencontrol.getNextCurrentImagen().getPathImagen()));
+        casilla1.setIcon(new ImageIcon(imagencontrol.getBackCurrentImagen().getPathImagen()));
+    }
+    
     /**
      * @param args the command line arguments
      */

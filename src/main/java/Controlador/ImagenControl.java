@@ -14,18 +14,37 @@ import java.util.ArrayList;
  */
 public class ImagenControl {
     
-    private ArrayList<Imagen> imagenes;
+    ArrayImagen imagenes;
 
     public ImagenControl() {
-        imagenes = new ArrayList();
+            imagenes = new ArrayImagen();
     }
     
-    public void addImagen(Imagen im){
-        imagenes.add(im);
+    public int getTamaño(){
+        return imagenes.getTamaño();
+    }
+ 
+    public void addImagen(Imagen imagen){
+        imagenes.addImagen(imagen);
     }
     
-    public int tamanoArrayImg(){
-        return imagenes.size();
+    public void siguienteImagen(){
+        imagenes.pasarImagen();
     }
     
+    public Imagen getCurrentImagen(){
+        Imagen imagen = imagenes.getImage(imagenes.getCurrentIndexImagen());
+        return imagen;
+    }
+    
+    public Imagen getNextCurrentImagen(){
+        Imagen imagen = imagenes.getImage(imagenes.getNextIndexImagen());
+        return imagen;
+    }
+    
+    public Imagen getBackCurrentImagen(){
+        Imagen imagen = imagenes.getImage(imagenes.getBackIndexImagen());
+        return imagen;
+    }
 }
+
