@@ -54,14 +54,13 @@ public class ArrayImagen {
         return (currentIndexImagen + 1) % imagenes.size();
     }
 
-    public int getBackIndexImagen() {
-        return (currentIndexImagen - 1) % imagenes.size();
-    }
-
     public void pasarImagen() {
         this.currentIndexImagen++;
         this.currentIndexImagen %= imagenes.size();
     }
-    
-    public
+
+    public void volverImagen() {
+        this.currentIndexImagen--;
+        this.currentIndexImagen %= imagenes.size();
+    }
 }

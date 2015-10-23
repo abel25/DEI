@@ -37,10 +37,10 @@ public class ImagenVista extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
         panelImagen = new javax.swing.JPanel();
         botonAtras = new javax.swing.JButton();
-        botonAdelante = new javax.swing.JButton();
         casilla1 = new javax.swing.JLabel();
         casilla2 = new javax.swing.JLabel();
         casilla3 = new javax.swing.JLabel();
+        botonAdelante = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         cargarImg = new javax.swing.JMenu();
         cargarImagen = new javax.swing.JMenuItem();
@@ -49,17 +49,7 @@ public class ImagenVista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout panelImagenLayout = new javax.swing.GroupLayout(panelImagen);
-        panelImagen.setLayout(panelImagenLayout);
-        panelImagenLayout.setHorizontalGroup(
-            panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 193, Short.MAX_VALUE)
-        );
-        panelImagenLayout.setVerticalGroup(
-            panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 164, Short.MAX_VALUE)
-        );
+        panelImagen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonAtras.setText("<");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +57,16 @@ public class ImagenVista extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
+        panelImagen.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        casilla1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelImagen.add(casilla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 70, 40));
+
+        casilla2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelImagen.add(casilla2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 80, 40));
+
+        casilla3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelImagen.add(casilla3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 70, 40));
 
         botonAdelante.setText(">");
         botonAdelante.addActionListener(new java.awt.event.ActionListener() {
@@ -74,12 +74,7 @@ public class ImagenVista extends javax.swing.JFrame {
                 botonAdelanteActionPerformed(evt);
             }
         });
-
-        casilla1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        casilla2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        casilla3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelImagen.add(botonAdelante, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         cargarImg.setText("File");
         cargarImg.addActionListener(new java.awt.event.ActionListener() {
@@ -108,34 +103,15 @@ public class ImagenVista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(botonAtras)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(casilla1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(casilla2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(casilla3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(botonAdelante)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonAdelante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(casilla3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(casilla2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(casilla1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(panelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -163,7 +139,8 @@ public class ImagenVista extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         // TODO add your handling code here:
-        
+        imagencontrol.atrasImagen();
+        pintarArrayImagen();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     public void pintarArrayImagen(){

@@ -13,38 +13,41 @@ import java.util.ArrayList;
  * @author ABEL
  */
 public class ImagenControl {
-    
-    ArrayImagen imagenes;
+
+    ArrayImagen carreteImagenes;
 
     public ImagenControl() {
-            imagenes = new ArrayImagen();
+        carreteImagenes = new ArrayImagen();
+    }
+
+    public int getTamaño() {
+        return carreteImagenes.getTamaño();
+    }
+
+    public void addImagen(Imagen imagen) {
+        carreteImagenes.addImagen(imagen);
+    }
+
+    public void siguienteImagen() {
+        carreteImagenes.pasarImagen();
+    }
+
+    public void atrasImagen(){
+        carreteImagenes.volverImagen();
     }
     
-    public int getTamaño(){
-        return imagenes.getTamaño();
-    }
- 
-    public void addImagen(Imagen imagen){
-        imagenes.addImagen(imagen);
-    }
-    
-    public void siguienteImagen(){
-        imagenes.pasarImagen();
-    }
-    
-    public Imagen getCurrentImagen(){
-        Imagen imagen = imagenes.getImage(imagenes.getCurrentIndexImagen());
+    public Imagen getCurrentImagen() {
+        Imagen imagen = carreteImagenes.getImage(carreteImagenes.getCurrentIndexImagen());
         return imagen;
     }
-    
-    public Imagen getNextCurrentImagen(){
-        Imagen imagen = imagenes.getImage(imagenes.getNextIndexImagen());
+
+    public Imagen getNextCurrentImagen() {
+        Imagen imagen = carreteImagenes.getImage(carreteImagenes.getNextIndexImagen());
         return imagen;
     }
-    
-    public Imagen getBackCurrentImagen(){
-        Imagen imagen = imagenes.getImage(imagenes.getBackIndexImagen());
+
+    public Imagen getBackCurrentImagen() {
+        Imagen imagen = carreteImagenes.getImage(0);
         return imagen;
     }
 }
-
