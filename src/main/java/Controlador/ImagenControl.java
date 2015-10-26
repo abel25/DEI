@@ -47,7 +47,7 @@ public class ImagenControl {
     }
 
     public Imagen getBackCurrentImagen() {
-        Imagen imagen = carreteImagenes.getImage(0);
+        Imagen imagen = carreteImagenes.getImage(carreteImagenes.getBackIndexImagen());
         return imagen;
     }
 }
