@@ -66,7 +66,7 @@ public class ArrayImagen {
     public void volverImagen() {
         this.currentIndexImagen--;
         if(currentIndexImagen<0){
-            this.currentIndexImagen=imagenes.size();
+            this.currentIndexImagen=imagenes.size()-1;
         } else {
         } 
     }
