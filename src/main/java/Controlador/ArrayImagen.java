@@ -36,6 +36,7 @@ public class ArrayImagen {
 
     public void addImagen(Imagen imagen) {
         imagenes.add(imagen);
+        imagen.dimensionar();
     }
 
     public int getTamaño() {
@@ -55,7 +56,11 @@ public class ArrayImagen {
     }
 
     public int getBackIndexImagen() {
-        return (currentIndexImagen + 2) % imagenes.size();
+        int val=currentIndexImagen-1;
+        if(val<0){
+            val=imagenes.size()-1;
+        }
+        return val;
     }
 
     public void pasarImagen() {
@@ -67,7 +72,6 @@ public class ArrayImagen {
         this.currentIndexImagen--;
         if(currentIndexImagen<0){
             this.currentIndexImagen=imagenes.size()-1;
-        } else {
-        } 
+        }
     }
 }
