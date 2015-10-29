@@ -11,7 +11,7 @@ package DAO;
  */
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.swingimagenes.model.Imagen;
+import Modelo.Imagen;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

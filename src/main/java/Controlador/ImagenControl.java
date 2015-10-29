@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import DAO.ImagenDAO;
 import Modelo.Imagen;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,10 +37,10 @@ public class ImagenControl {
         carreteImagenes.pasarImagen();
     }
 
-    public void atrasImagen(){
+    public void atrasImagen() {
         carreteImagenes.volverImagen();
     }
-    
+
     public Imagen getCurrentImagen() {
         Imagen imagen = carreteImagenes.getImage(carreteImagenes.getCurrentIndexImagen());
         return imagen;
@@ -55,11 +56,14 @@ public class ImagenControl {
         return imagen;
     }
 
-    public void saveImagen() throws FileNotFoundException, IOException {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("."));
-            for (int i = 0; i < carreteImagenes.getTamaño(); i++) {
-            
-        }
-        }
+    public void salvar() {
+        ImagenDAO imagenDAO = new ImagenDAO();
+        imagenDAO.save(carreteImagenes.getImagenes());
     }
 
+    public void cargar() {
+        ImagenDAO imagenDAO = new ImagenDAO();
+        carreteImagenes.setImagenes(imagenDAO.load());
+    }
+
+}

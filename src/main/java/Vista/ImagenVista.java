@@ -133,6 +133,11 @@ public class ImagenVista extends javax.swing.JFrame {
 
         loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
         loadItem.setText("Load");
+        loadItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadItemActionPerformed(evt);
+            }
+        });
         cargarImg.add(loadItem);
 
         jMenuBar1.add(cargarImg);
@@ -197,8 +202,13 @@ public class ImagenVista extends javax.swing.JFrame {
 
     private void saveIteamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveIteamActionPerformed
         // TODO add your handling code here:
-        //imagencontrol.saveImagen();
+        imagencontrol.salvar();
     }//GEN-LAST:event_saveIteamActionPerformed
+
+    private void loadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadItemActionPerformed
+        // TODO add your handling code here:
+        imagencontrol.cargar();
+    }//GEN-LAST:event_loadItemActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
