@@ -53,6 +53,8 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         cargarImg = new javax.swing.JMenu();
         cargarImagen = new javax.swing.JMenuItem();
+        saveIteam = new javax.swing.JMenuItem();
+        loadItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,13 +113,27 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
-        cargarImagen.setText("Cargar Imagen");
+        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
+        cargarImagen.setText("Add");
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarImagenActionPerformed(evt);
             }
         });
         cargarImg.add(cargarImagen);
+
+        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
+        saveIteam.setText("Save");
+        saveIteam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveIteamActionPerformed(evt);
+            }
+        });
+        cargarImg.add(saveIteam);
+
+        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
+        loadItem.setText("Load");
+        cargarImg.add(loadItem);
 
         jMenuBar1.add(cargarImg);
 
@@ -178,6 +194,11 @@ public class ImagenVista extends javax.swing.JFrame {
         imagencontrol.atrasImagen();
         pintarArrayImagen();
     }//GEN-LAST:event_botonAtrasActionPerformed
+
+    private void saveIteamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveIteamActionPerformed
+        // TODO add your handling code here:
+        //imagencontrol.saveImagen();
+    }//GEN-LAST:event_saveIteamActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
@@ -250,6 +271,8 @@ public class ImagenVista extends javax.swing.JFrame {
     private Vista.ImagePanel imagePanel;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem loadItem;
     private javax.swing.JPanel panelImagen;
+    private javax.swing.JMenuItem saveIteam;
     // End of variables declaration//GEN-END:variables
 }

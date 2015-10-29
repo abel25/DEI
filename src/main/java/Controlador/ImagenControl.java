@@ -6,6 +6,10 @@
 package Controlador;
 
 import Modelo.Imagen;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -50,4 +54,12 @@ public class ImagenControl {
         Imagen imagen = carreteImagenes.getImage(carreteImagenes.getBackIndexImagen());
         return imagen;
     }
-}
+
+    public void saveImagen() throws FileNotFoundException, IOException {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("."));
+            for (int i = 0; i < carreteImagenes.getTamaño(); i++) {
+            
+        }
+        }
+    }
+
