@@ -23,7 +23,7 @@ import org.imgscalr.Scalr;
  */
 public class ImagenVista extends javax.swing.JFrame {
 
-    ImagenControl imagencontrol;
+    ImagenControl imagencontrol = null;
 
     /**
      * Creates new form ImagenVista
@@ -44,22 +44,58 @@ public class ImagenVista extends javax.swing.JFrame {
 
         fileChooser = new javax.swing.JFileChooser();
         panelImagen = new javax.swing.JPanel();
+        imagePanel = new Vista.ImagePanel();
+        panelBotones = new javax.swing.JPanel();
         botonAtras = new javax.swing.JButton();
         casilla1 = new javax.swing.JLabel();
         casilla2 = new javax.swing.JLabel();
         casilla3 = new javax.swing.JLabel();
         botonAdelante = new javax.swing.JButton();
-        imagePanel = new Vista.ImagePanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cargarImg = new javax.swing.JMenu();
         cargarImagen = new javax.swing.JMenuItem();
         saveIteam = new javax.swing.JMenuItem();
         loadItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        blurItem = new javax.swing.JMenuItem();
+        greyItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        panelImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        imagePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 204, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panelImagenLayout = new javax.swing.GroupLayout(panelImagen);
+        panelImagen.setLayout(panelImagenLayout);
+        panelImagenLayout.setHorizontalGroup(
+            panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImagenLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
+        panelImagenLayout.setVerticalGroup(
+            panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImagenLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(panelImagen);
+
+        panelBotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         botonAtras.setText("<");
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -67,25 +103,25 @@ public class ImagenVista extends javax.swing.JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        panelImagen.add(botonAtras);
+        panelBotones.add(botonAtras);
 
         casilla1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         casilla1.setMaximumSize(new java.awt.Dimension(20, 20));
         casilla1.setMinimumSize(new java.awt.Dimension(20, 20));
         casilla1.setPreferredSize(new java.awt.Dimension(20, 20));
-        panelImagen.add(casilla1);
+        panelBotones.add(casilla1);
 
         casilla2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         casilla2.setMaximumSize(new java.awt.Dimension(20, 20));
         casilla2.setMinimumSize(new java.awt.Dimension(20, 20));
         casilla2.setPreferredSize(new java.awt.Dimension(20, 20));
-        panelImagen.add(casilla2);
+        panelBotones.add(casilla2);
 
         casilla3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         casilla3.setMaximumSize(new java.awt.Dimension(20, 20));
         casilla3.setMinimumSize(new java.awt.Dimension(20, 20));
         casilla3.setPreferredSize(new java.awt.Dimension(20, 20));
-        panelImagen.add(casilla3);
+        panelBotones.add(casilla3);
 
         botonAdelante.setText(">");
         botonAdelante.addActionListener(new java.awt.event.ActionListener() {
@@ -93,18 +129,9 @@ public class ImagenVista extends javax.swing.JFrame {
                 botonAdelanteActionPerformed(evt);
             }
         });
-        panelImagen.add(botonAdelante);
+        panelBotones.add(botonAdelante);
 
-        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
-        imagePanel.setLayout(imagePanelLayout);
-        imagePanelLayout.setHorizontalGroup(
-            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 199, Short.MAX_VALUE)
-        );
-        imagePanelLayout.setVerticalGroup(
-            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 199, Short.MAX_VALUE)
-        );
+        getContentPane().add(panelBotones);
 
         cargarImg.setText("File");
         cargarImg.addActionListener(new java.awt.event.ActionListener() {
@@ -143,33 +170,21 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenuBar1.add(cargarImg);
 
         jMenu2.setText("Edit");
+
+        blurItem.setText("Blur");
+        blurItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blurItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(blurItem);
+
+        greyItem.setText("GreyScale");
+        jMenu2.add(greyItem);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -208,7 +223,13 @@ public class ImagenVista extends javax.swing.JFrame {
     private void loadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadItemActionPerformed
         // TODO add your handling code here:
         imagencontrol.cargar();
+        pintarArrayImagen();
     }//GEN-LAST:event_loadItemActionPerformed
+
+    private void blurItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blurItemActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_blurItemActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
@@ -270,6 +291,7 @@ public class ImagenVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem blurItem;
     private javax.swing.JButton botonAdelante;
     private javax.swing.JButton botonAtras;
     private javax.swing.JMenuItem cargarImagen;
@@ -278,10 +300,12 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JLabel casilla2;
     private javax.swing.JLabel casilla3;
     private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JMenuItem greyItem;
     private Vista.ImagePanel imagePanel;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem loadItem;
+    private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
     private javax.swing.JMenuItem saveIteam;
     // End of variables declaration//GEN-END:variables

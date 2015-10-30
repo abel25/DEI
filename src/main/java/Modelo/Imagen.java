@@ -20,12 +20,24 @@ import javax.imageio.ImageIO;
 public class Imagen {
     
     private String pathImagen;
+    private String imageBlur;
     private int heightIcono;
     private int widthIcono;
     private int heightGrande;
     private int widthGrande;
     private final int iconoMax=20;
     private final int grandeMax=199;
+
+    public Imagen() {
+    }
+
+    public String getImageBlur() {
+        return imageBlur;
+    }
+
+    public void setImageBlur(String imageBlur) {
+        this.imageBlur = imageBlur;
+    }
 
     public String getPathImagen() {
         return pathImagen;

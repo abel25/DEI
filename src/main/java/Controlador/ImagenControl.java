@@ -7,11 +7,20 @@ package Controlador;
 
 import DAO.ImagenDAO;
 import Modelo.Imagen;
+import com.swingimagenes.control.ControlImagenes;
+import java.awt.color.ColorSpace;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ColorConvertOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -64,6 +73,36 @@ public class ImagenControl {
     public void cargar() {
         ImagenDAO imagenDAO = new ImagenDAO();
         carreteImagenes.setImagenes(imagenDAO.load());
+    }
+
+    public BufferedImage blurImagen(BufferedImage im) {
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = im;
+            Kernel kernel = new Kernel(3, 3, new float[]{1f / 9f, 1f / 9f, 1f / 9f,
+                1f / 9f, 1f / 9f, 1f / 9f, 1f / 9f, 1f / 9f, 1f / 9f});
+            BufferedImageOp op = new ConvolveOp(kernel);
+            bufferedImage = op.filter(bufferedImage, null);
+        } catch (Exception ex) {
+            Logger.getLogger(ControlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bufferedImage;
+    }
+
+    public BufferedImage greyScaleImagen(BufferedImage im) {
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = im;
+
+            BufferedImageOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+
+            op = new ConvolveOp(new Kernel(3, 3, new float[]{.1111f, .1111f, .1111f, .1111f, .1111f, .1111f, .1111f, .1111f, .1111f,}));
+
+            bufferedImage = op.filter(bufferedImage, null);
+        } catch (Exception ex) {
+            Logger.getLogger(ControlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bufferedImage;
     }
 
 }

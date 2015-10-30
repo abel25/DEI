@@ -20,10 +20,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author oscar
+ * 
  */
 public class ImagenDAO {
-
+    
     public ArrayList<Imagen> load() {
         ArrayList<Imagen> imagenes = null;
         try {
@@ -31,7 +31,6 @@ public class ImagenDAO {
             imagenes = mapper.readValue(new File("imagenes.json"), 
                     new TypeReference<ArrayList<Imagen>>() {
             });
-
         } catch (IOException ex) {
             Logger.getLogger(ImagenDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,7 +44,5 @@ public class ImagenDAO {
         } catch (IOException ex) {
             Logger.getLogger(ImagenDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }
