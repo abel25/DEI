@@ -8,6 +8,7 @@ package Vista;
 import Controlador.ImagenControl;
 import Modelo.Imagen;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,9 +31,9 @@ public class ImagenVista extends javax.swing.JFrame {
      */
     public ImagenVista() {
         initComponents();
-        imagencontrol = new ImagenControl();
+        imagencontrol = new ImagenControl();   
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +44,12 @@ public class ImagenVista extends javax.swing.JFrame {
     private void initComponents() {
 
         fileChooser = new javax.swing.JFileChooser();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        cargar = new javax.swing.JMenuItem();
+        load = new javax.swing.JMenuItem();
+        save = new javax.swing.JMenuItem();
+        blur = new javax.swing.JMenuItem();
+        grey = new javax.swing.JMenuItem();
         panelImagen = new javax.swing.JPanel();
         imagePanel = new Vista.ImagePanel();
         panelBotones = new javax.swing.JPanel();
@@ -60,10 +67,51 @@ public class ImagenVista extends javax.swing.JFrame {
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
 
+        cargar.setText("Add");
+        cargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(cargar);
+
+        load.setText("Load");
+        load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(load);
+
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(save);
+
+        blur.setText("Blur");
+        blur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blurActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(blur);
+
+        grey.setText("Grey");
+        grey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greyActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(grey);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         imagePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        imagePanel.setComponentPopupMenu(jPopupMenu1);
 
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
@@ -73,7 +121,7 @@ public class ImagenVista extends javax.swing.JFrame {
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
+            .addGap(0, 201, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelImagenLayout = new javax.swing.GroupLayout(panelImagen);
@@ -140,7 +188,6 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
-        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
         cargarImagen.setText("Add");
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +196,6 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(cargarImagen);
 
-        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
         saveIteam.setText("Save");
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +204,6 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(saveIteam);
 
-        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
         loadItem.setText("Load");
         loadItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +225,11 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenu2.add(blurItem);
 
         greyItem.setText("GreyScale");
+        greyItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greyItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(greyItem);
 
         jMenuBar1.add(jMenu2);
@@ -228,8 +278,38 @@ public class ImagenVista extends javax.swing.JFrame {
 
     private void blurItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blurItemActionPerformed
         // TODO add your handling code here:
-       
+       imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
     }//GEN-LAST:event_blurItemActionPerformed
+
+    private void greyItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greyItemActionPerformed
+        // TODO add your handling code here:
+        imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
+    }//GEN-LAST:event_greyItemActionPerformed
+
+    private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
+        // TODO add your handling code here:
+        cargarImagenActionPerformed(evt);
+    }//GEN-LAST:event_cargarActionPerformed
+
+    private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
+        // TODO add your handling code here:
+        loadItemActionPerformed(evt);
+    }//GEN-LAST:event_loadActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        // TODO add your handling code here:
+        saveIteamActionPerformed(evt);
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void blurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blurActionPerformed
+        // TODO add your handling code here:
+        blurItemActionPerformed(evt);
+    }//GEN-LAST:event_blurActionPerformed
+
+    private void greyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greyActionPerformed
+        // TODO add your handling code here:
+        greyItemActionPerformed(evt);
+    }//GEN-LAST:event_greyActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
@@ -291,22 +371,28 @@ public class ImagenVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem blur;
     private javax.swing.JMenuItem blurItem;
     private javax.swing.JButton botonAdelante;
     private javax.swing.JButton botonAtras;
+    private javax.swing.JMenuItem cargar;
     private javax.swing.JMenuItem cargarImagen;
     private javax.swing.JMenu cargarImg;
     private javax.swing.JLabel casilla1;
     private javax.swing.JLabel casilla2;
     private javax.swing.JLabel casilla3;
     private javax.swing.JFileChooser fileChooser;
+    private javax.swing.JMenuItem grey;
     private javax.swing.JMenuItem greyItem;
     private Vista.ImagePanel imagePanel;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenuItem load;
     private javax.swing.JMenuItem loadItem;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
+    private javax.swing.JMenuItem save;
     private javax.swing.JMenuItem saveIteam;
     // End of variables declaration//GEN-END:variables
 }
