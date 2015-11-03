@@ -3,8 +3,14 @@
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JFileChooser" name="fileChooser">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="choser" noResource="true"/>
+      </Properties>
     </Component>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="popup" noResource="true"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
@@ -13,6 +19,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="cargar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="name" type="java.lang.String" value="addp" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarActionPerformed"/>
@@ -21,6 +28,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="load">
           <Properties>
             <Property name="text" type="java.lang.String" value="Load"/>
+            <Property name="name" type="java.lang.String" value="loadp" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadActionPerformed"/>
@@ -29,6 +37,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="save">
           <Properties>
             <Property name="text" type="java.lang.String" value="Save"/>
+            <Property name="name" type="java.lang.String" value="savep" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
@@ -37,6 +46,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="blur">
           <Properties>
             <Property name="text" type="java.lang.String" value="Blur"/>
+            <Property name="name" type="java.lang.String" value="blurp" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blurActionPerformed"/>
@@ -45,6 +55,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="grey">
           <Properties>
             <Property name="text" type="java.lang.String" value="Grey"/>
+            <Property name="name" type="java.lang.String" value="greyp" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="greyActionPerformed"/>
@@ -57,6 +68,7 @@
         <Menu class="javax.swing.JMenu" name="cargarImg">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="name" type="java.lang.String" value="menu1" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarImgActionPerformed"/>
@@ -65,6 +77,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="cargarImagen">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
+                <Property name="name" type="java.lang.String" value="add" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarImagenActionPerformed"/>
@@ -73,6 +86,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="saveIteam">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="name" type="java.lang.String" value="save" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveIteamActionPerformed"/>
@@ -81,6 +95,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="loadItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Load"/>
+                <Property name="name" type="java.lang.String" value="load" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadItemActionPerformed"/>
@@ -91,11 +106,13 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="name" type="java.lang.String" value="menu2" noResource="true"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="blurItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Blur"/>
+                <Property name="name" type="java.lang.String" value="blur" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="blurItemActionPerformed"/>
@@ -104,6 +121,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="greyItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GreyScale"/>
+                <Property name="name" type="java.lang.String" value="grey" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="greyItemActionPerformed"/>
@@ -172,6 +190,7 @@
             <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="jPopupMenu1"/>
             </Property>
+            <Property name="name" type="java.lang.String" value="imagePanel" noResource="true"/>
           </Properties>
 
           <Layout>
@@ -203,6 +222,7 @@
         <Component class="javax.swing.JButton" name="botonAtras">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;"/>
+            <Property name="name" type="java.lang.String" value="atras" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAtrasActionPerformed"/>
@@ -265,6 +285,7 @@
         <Component class="javax.swing.JButton" name="botonAdelante">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;"/>
+            <Property name="name" type="java.lang.String" value="avanzar" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAdelanteActionPerformed"/>

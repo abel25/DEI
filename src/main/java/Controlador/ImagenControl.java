@@ -7,7 +7,6 @@ package Controlador;
 
 import DAO.ImagenDAO;
 import Modelo.Imagen;
-import com.swingimagenes.control.ControlImagenes;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
@@ -84,7 +83,7 @@ public class ImagenControl {
             BufferedImageOp op = new ConvolveOp(kernel);
             bufferedImage = op.filter(bufferedImage, null);
         } catch (Exception ex) {
-            Logger.getLogger(ControlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImagenControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bufferedImage;
     }
@@ -100,7 +99,7 @@ public class ImagenControl {
 
             bufferedImage = op.filter(bufferedImage, null);
         } catch (Exception ex) {
-            Logger.getLogger(ControlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImagenControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bufferedImage;
     }

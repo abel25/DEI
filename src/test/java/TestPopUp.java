@@ -10,8 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 import org.fest.swing.fixture.FrameFixture;
+import org.fest.swing.fixture.JButtonFixture;
 import org.fest.swing.fixture.JFileChooserFixture;
 import org.fest.swing.fixture.JMenuItemFixture;
+import org.fest.swing.fixture.JPanelFixture;
+import org.fest.swing.fixture.JPopupMenuFixture;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,7 +29,7 @@ import org.junit.runners.MethodSorters;
  * @author AbelyDiego
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestMenuItems {
+public class TestPopUp {
     
     private FrameFixture frame;
     File file = new File("src\\main\\resources\\imagenes\\chal.png");
@@ -55,47 +58,83 @@ public class TestMenuItems {
     }
  
     @Test
-    public void menuAdd(){
-        JMenuItemFixture menu = frame.menuItem("menu1");
-        menu.click();
-        JMenuItemFixture add = frame.menuItem("add");
-        add.click();
+    public void probarPopUpAAdd(){
+        
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+        
+        JMenuItemFixture addp = frame.menuItem("addp");
+        addp.click();
+        
         JFileChooserFixture choser = frame.fileChooser("choser");
         choser.setCurrentDirectory(file);
         choser.selectFile(file);
         choser.approve();
-       
-        menu.click();
-        add.click();
+
+        img.rightClick();
+
+        addp.click();
+        
+        choser.setCurrentDirectory(file);
         choser.selectFile(file2);
         choser.approve();
         
-        menu.click();
-        add.click();
+        img.rightClick();
+
+        addp.click();
+        
+        choser.setCurrentDirectory(file);
         choser.selectFile(file3);
         choser.approve();
-       
-        menu.click();
-        add.click();
+        
+        img.rightClick();
+
+        addp.click();
+        
+        choser.setCurrentDirectory(file);
         choser.selectFile(file4);
         choser.approve();
     }
     
     @Test
-    public void menuBSave(){
-        menuAdd();
-        JMenuItemFixture menu = frame.menuItem("menu1");
-        menu.click();
-        JMenuItemFixture save = frame.menuItem("save");
-        save.click();
+    public void probarPopUpBSave(){
+        probarPopUpAAdd();
+        
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+        
+        JMenuItemFixture savep = frame.menuItem("savep");
+        savep.click();
     }
     
     @Test
-    public void menuLoad(){
-        JMenuItemFixture menu = frame.menuItem("menu1");
-        menu.click();
-        JMenuItemFixture load = frame.menuItem("load");
-        load.click();
+    public void probarPopUpCLoad(){
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+        
+        JMenuItemFixture loadp = frame.menuItem("loadp");
+        loadp.click();
     }
     
+    @Test
+    public void probarPopUpDLoadBlur(){
+        probarPopUpCLoad();
+        
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+        
+        JMenuItemFixture blurp = frame.menuItem("blurp");
+        blurp.click();
+    }
+    
+    @Test
+    public void probarPopUpELoadGrey(){
+        probarPopUpCLoad();
+        
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+        
+        JMenuItemFixture greyp = frame.menuItem("greyp");
+        greyp.click();
+    }
 }

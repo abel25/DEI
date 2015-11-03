@@ -67,7 +67,12 @@ public class ImagenVista extends javax.swing.JFrame {
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
 
+        fileChooser.setName("choser"); // NOI18N
+
+        jPopupMenu1.setName("popup"); // NOI18N
+
         cargar.setText("Add");
+        cargar.setName("addp"); // NOI18N
         cargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarActionPerformed(evt);
@@ -76,6 +81,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jPopupMenu1.add(cargar);
 
         load.setText("Load");
+        load.setName("loadp"); // NOI18N
         load.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadActionPerformed(evt);
@@ -84,6 +90,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jPopupMenu1.add(load);
 
         save.setText("Save");
+        save.setName("savep"); // NOI18N
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
@@ -92,6 +99,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jPopupMenu1.add(save);
 
         blur.setText("Blur");
+        blur.setName("blurp"); // NOI18N
         blur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blurActionPerformed(evt);
@@ -100,6 +108,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jPopupMenu1.add(blur);
 
         grey.setText("Grey");
+        grey.setName("greyp"); // NOI18N
         grey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 greyActionPerformed(evt);
@@ -112,6 +121,7 @@ public class ImagenVista extends javax.swing.JFrame {
 
         imagePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         imagePanel.setComponentPopupMenu(jPopupMenu1);
+        imagePanel.setName("imagePanel"); // NOI18N
 
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
@@ -146,6 +156,7 @@ public class ImagenVista extends javax.swing.JFrame {
         panelBotones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         botonAtras.setText("<");
+        botonAtras.setName("atras"); // NOI18N
         botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAtrasActionPerformed(evt);
@@ -172,6 +183,7 @@ public class ImagenVista extends javax.swing.JFrame {
         panelBotones.add(casilla3);
 
         botonAdelante.setText(">");
+        botonAdelante.setName("avanzar"); // NOI18N
         botonAdelante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAdelanteActionPerformed(evt);
@@ -182,6 +194,7 @@ public class ImagenVista extends javax.swing.JFrame {
         getContentPane().add(panelBotones);
 
         cargarImg.setText("File");
+        cargarImg.setName("menu1"); // NOI18N
         cargarImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarImgActionPerformed(evt);
@@ -189,6 +202,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
 
         cargarImagen.setText("Add");
+        cargarImagen.setName("add"); // NOI18N
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargarImagenActionPerformed(evt);
@@ -197,6 +211,7 @@ public class ImagenVista extends javax.swing.JFrame {
         cargarImg.add(cargarImagen);
 
         saveIteam.setText("Save");
+        saveIteam.setName("save"); // NOI18N
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveIteamActionPerformed(evt);
@@ -205,6 +220,7 @@ public class ImagenVista extends javax.swing.JFrame {
         cargarImg.add(saveIteam);
 
         loadItem.setText("Load");
+        loadItem.setName("load"); // NOI18N
         loadItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadItemActionPerformed(evt);
@@ -215,8 +231,10 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenuBar1.add(cargarImg);
 
         jMenu2.setText("Edit");
+        jMenu2.setName("menu2"); // NOI18N
 
         blurItem.setText("Blur");
+        blurItem.setName("blur"); // NOI18N
         blurItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blurItemActionPerformed(evt);
@@ -225,6 +243,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenu2.add(blurItem);
 
         greyItem.setText("GreyScale");
+        greyItem.setName("grey"); // NOI18N
         greyItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 greyItemActionPerformed(evt);
