@@ -7,6 +7,8 @@ package Vista;
 
 import Controlador.ImagenControl;
 import Modelo.Imagen;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -66,6 +68,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
+        pintarItem = new javax.swing.JMenuItem();
 
         fileChooser.setName("choser"); // NOI18N
 
@@ -131,7 +134,7 @@ public class ImagenVista extends javax.swing.JFrame {
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 201, Short.MAX_VALUE)
+            .addGap(0, 203, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelImagenLayout = new javax.swing.GroupLayout(panelImagen);
@@ -139,16 +142,16 @@ public class ImagenVista extends javax.swing.JFrame {
         panelImagenLayout.setHorizontalGroup(
             panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelImagenLayout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE)
+                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         panelImagenLayout.setVerticalGroup(
             panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImagenLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelImagen);
@@ -201,6 +204,7 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
+        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
         cargarImagen.setText("Add");
         cargarImagen.setName("add"); // NOI18N
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +214,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(cargarImagen);
 
+        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
         saveIteam.setText("Save");
         saveIteam.setName("save"); // NOI18N
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +224,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(saveIteam);
 
+        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
         loadItem.setText("Load");
         loadItem.setName("load"); // NOI18N
         loadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -251,6 +257,14 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         jMenu2.add(greyItem);
 
+        pintarItem.setText("Pintar");
+        pintarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pintarItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(pintarItem);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -266,9 +280,9 @@ public class ImagenVista extends javax.swing.JFrame {
     private void cargarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarImagenActionPerformed
         // TODO add your handling code here:
         fileChooser.showOpenDialog(this);
-
-        imagencontrol.addImagen(new Imagen(fileChooser.getSelectedFile().getPath()));
-
+        Imagen imagen = new Imagen(fileChooser.getSelectedFile().getPath());
+        imagencontrol.addImagen(imagen);
+ 
         pintarArrayImagen();
     }//GEN-LAST:event_cargarImagenActionPerformed
 
@@ -329,6 +343,22 @@ public class ImagenVista extends javax.swing.JFrame {
         // TODO add your handling code here:
         greyItemActionPerformed(evt);
     }//GEN-LAST:event_greyActionPerformed
+
+    private void pintarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pintarItemActionPerformed
+        BufferedImage image = new BufferedImage(imagePanel.getHeight(), imagePanel.getWidth(), BufferedImage.TYPE_INT_RGB);
+        File f = new File("MyFile.jpg");
+        Graphics2D g = image.createGraphics();
+        g.fillRect(0, 0, image.getWidth(), image.getHeight());
+        g.setColor(Color.RED);
+        g.drawLine(0, 0, image.getWidth(), image.getHeight());
+        //g.dispose();
+        try {
+            ImageIO.write(Scalr.rotate(image, Scalr.Rotation.FLIP_VERT, null), "jpg", f);
+        } catch (IOException ex) {
+            Logger.getLogger(Imagen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        imagePanel.setImagen(Scalr.resize(image, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+    }//GEN-LAST:event_pintarItemActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
@@ -411,6 +441,7 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem loadItem;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
+    private javax.swing.JMenuItem pintarItem;
     private javax.swing.JMenuItem save;
     private javax.swing.JMenuItem saveIteam;
     // End of variables declaration//GEN-END:variables

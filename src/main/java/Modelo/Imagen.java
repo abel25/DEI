@@ -21,6 +21,7 @@ public class Imagen {
     
     private String pathImagen;
     private String imageBlur;
+    private String imageGrey;
     private int heightIcono;
     private int widthIcono;
     private int heightGrande;
@@ -31,6 +32,14 @@ public class Imagen {
     public Imagen() {
     }
 
+    public String getImageGrey() {
+        return imageGrey;
+    }
+
+    public void setImageGrey(String imageGrey) {
+        this.imageGrey = imageGrey;
+    }
+    
     public String getImageBlur() {
         return imageBlur;
     }
