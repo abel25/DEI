@@ -76,9 +76,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cargarImagen">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ABEL\Documents\NetBeansProjects\CarruselAbel\src\main\resources\imagenes\add.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
                 <Property name="name" type="java.lang.String" value="add" noResource="true"/>
               </Properties>
@@ -88,9 +85,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="saveIteam">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ABEL\Documents\NetBeansProjects\CarruselAbel\src\main\resources\imagenes\save.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
                 <Property name="name" type="java.lang.String" value="save" noResource="true"/>
               </Properties>
@@ -100,9 +94,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="loadItem">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ABEL\Documents\NetBeansProjects\CarruselAbel\src\main\resources\imagenes\load.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Load"/>
                 <Property name="name" type="java.lang.String" value="load" noResource="true"/>
               </Properties>

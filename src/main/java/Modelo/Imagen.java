@@ -20,8 +20,9 @@ import javax.imageio.ImageIO;
 public class Imagen {
     
     private String pathImagen;
-    private String imageBlur;
-    private String imageGrey;
+    private String pathBlur;
+    private String pathGrey;
+    private String pathPintar;
     private int heightIcono;
     private int widthIcono;
     private int heightGrande;
@@ -32,20 +33,28 @@ public class Imagen {
     public Imagen() {
     }
 
-    public String getImageGrey() {
-        return imageGrey;
+    public String getPathPintar() {
+        return pathPintar;
     }
 
-    public void setImageGrey(String imageGrey) {
-        this.imageGrey = imageGrey;
+    public void setPathPintar(String pathPintar) {
+        this.pathPintar = pathPintar;
+    }
+
+    public String getpathGrey() {
+        return pathGrey;
+    }
+
+    public void setpathGrey(String pathGrey) {
+        this.pathGrey = pathGrey;
     }
     
-    public String getImageBlur() {
-        return imageBlur;
+    public String getpathBlur() {
+        return pathBlur;
     }
 
-    public void setImageBlur(String imageBlur) {
-        this.imageBlur = imageBlur;
+    public void setpathBlur(String pathBlur) {
+        this.pathBlur = pathBlur;
     }
 
     public String getPathImagen() {

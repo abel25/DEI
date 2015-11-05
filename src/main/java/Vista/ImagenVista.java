@@ -345,19 +345,25 @@ public class ImagenVista extends javax.swing.JFrame {
     }//GEN-LAST:event_greyActionPerformed
 
     private void pintarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pintarItemActionPerformed
-        BufferedImage image = new BufferedImage(imagePanel.getHeight(), imagePanel.getWidth(), BufferedImage.TYPE_INT_RGB);
-        File f = new File("MyFile.jpg");
-        Graphics2D g = image.createGraphics();
-        g.fillRect(0, 0, image.getWidth(), image.getHeight());
-        g.setColor(Color.RED);
-        g.drawLine(0, 0, image.getWidth(), image.getHeight());
-        //g.dispose();
-        try {
-            ImageIO.write(Scalr.rotate(image, Scalr.Rotation.FLIP_VERT, null), "jpg", f);
+        try {                                           
+            BufferedImage image = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
+            File f = new File("MyFile.jpg");
+            Graphics2D g = image.createGraphics();
+            g.fillRect(0, 0, image.getWidth(), image.getHeight());
+            g.setColor(Color.RED);
+            g.drawLine(0, 0, image.getWidth(), image.getHeight());
+            //g.dispose();
+            try {
+                ImageIO.write(Scalr.rotate(image, Scalr.Rotation.FLIP_VERT, null), "jpg", f);
+                //imagePanel.setImagen(Scalr.resize(image, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+            } catch (IOException ex) {
+                Logger.getLogger(Imagen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         } catch (IOException ex) {
-            Logger.getLogger(Imagen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        imagePanel.setImagen(Scalr.resize(image, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+        
     }//GEN-LAST:event_pintarItemActionPerformed
 
     public void pintarArrayImagen() {
