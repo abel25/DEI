@@ -27,7 +27,7 @@ import org.junit.runners.MethodSorters;
  * @author AbelyDiego
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestArrayBotones {
+public class TestMenuItemsArrayBotones {
     
     private FrameFixture frame;
 //    File file = new File("src\\main\\resources\\imagenes\\chal.png");
