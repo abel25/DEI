@@ -74,6 +74,12 @@ public class ImagenControl {
         carreteImagenes.setImagenes(imagenDAO.load());
     }
 
+    public BufferedImage normalImagen(BufferedImage im){
+        BufferedImage bufferedImage = null;
+        
+        return bufferedImage;
+    }
+    
     public BufferedImage blurImagen(BufferedImage im) {
         BufferedImage bufferedImage = null;
         try {

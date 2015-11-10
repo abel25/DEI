@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.imgscalr.Scalr;
 
 /**
@@ -33,9 +35,10 @@ public class ImagenVista extends javax.swing.JFrame {
      */
     public ImagenVista() {
         initComponents();
-        imagencontrol = new ImagenControl();   
+        imagencontrol = new ImagenControl();
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +69,7 @@ public class ImagenVista extends javax.swing.JFrame {
         saveIteam = new javax.swing.JMenuItem();
         loadItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuNormal = new javax.swing.JMenuItem();
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
         pintarItem = new javax.swing.JMenuItem();
@@ -119,7 +123,12 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         jPopupMenu1.add(grey);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         imagePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -204,7 +213,6 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
-        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
         cargarImagen.setText("Add");
         cargarImagen.setName("add"); // NOI18N
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +222,6 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(cargarImagen);
 
-        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
         saveIteam.setText("Save");
         saveIteam.setName("save"); // NOI18N
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +231,6 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(saveIteam);
 
-        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
         loadItem.setText("Load");
         loadItem.setName("load"); // NOI18N
         loadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +244,14 @@ public class ImagenVista extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
         jMenu2.setName("menu2"); // NOI18N
+
+        menuNormal.setText("Normal");
+        menuNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNormalActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuNormal);
 
         blurItem.setText("Blur");
         blurItem.setName("blur"); // NOI18N
@@ -281,8 +295,10 @@ public class ImagenVista extends javax.swing.JFrame {
         // TODO add your handling code here:
         fileChooser.showOpenDialog(this);
         Imagen imagen = new Imagen(fileChooser.getSelectedFile().getPath());
+        //imagen.setpathBlur("..Blur");
+        //imagen.setpathGrey("..Grey");
         imagencontrol.addImagen(imagen);
- 
+
         pintarArrayImagen();
     }//GEN-LAST:event_cargarImagenActionPerformed
 
@@ -310,13 +326,18 @@ public class ImagenVista extends javax.swing.JFrame {
     }//GEN-LAST:event_loadItemActionPerformed
 
     private void blurItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blurItemActionPerformed
-        // TODO add your handling code here:
-       imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
+
+        imagencontrol.getCurrentImagen().setTipo("blur");
+        pintarArrayImagen();
+        //imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
     }//GEN-LAST:event_blurItemActionPerformed
 
     private void greyItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greyItemActionPerformed
         // TODO add your handling code here:
-        imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
+        imagencontrol.getCurrentImagen().setTipo("grey");
+        pintarArrayImagen();
+        //imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
+        //imagePanel.setImagen(imagencontrol.blurImagen(ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()))));
     }//GEN-LAST:event_greyItemActionPerformed
 
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
@@ -345,25 +366,40 @@ public class ImagenVista extends javax.swing.JFrame {
     }//GEN-LAST:event_greyActionPerformed
 
     private void pintarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pintarItemActionPerformed
-        try {                                           
+        try {
             BufferedImage image = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
             Graphics2D g = image.createGraphics();
             g.setColor(Color.RED);
             g.drawLine(0, 0, image.getWidth(), image.getHeight());
-            
+
             imagePanel.setImagen(Scalr.resize(image, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
-            
+
         } catch (IOException ex) {
             Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_pintarItemActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this,
+                "¿Estas seguro de salir?", "¿Quieres cerrar?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void menuNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNormalActionPerformed
+        // TODO add your handling code here:
+        imagencontrol.getCurrentImagen().setTipo("normal");
+        pintarArrayImagen();
+    }//GEN-LAST:event_menuNormalActionPerformed
 
     public void pintarArrayImagen() {
         BufferedImage ima;
         try {
             switch (imagencontrol.getTamaño()) {
-
                 default:
                     ima = ImageIO.read(new File(imagencontrol.getBackCurrentImagen().getPathImagen()));
                     casilla1.setIcon(new ImageIcon(ima.getScaledInstance(imagencontrol.getBackCurrentImagen().getWidthIcono(), imagencontrol.getBackCurrentImagen().getHeightIcono(), Image.SCALE_DEFAULT)));
@@ -380,7 +416,19 @@ public class ImagenVista extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        try {
+            switch (imagencontrol.getCurrentImagen().getTipo()) {
+                case "normal":
+                    BufferedImage img = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
+                    imagePanel.setImagen(Scalr.resize(img, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+                case "blur":
+                    imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
+                case "grey":
+                    imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -438,6 +486,7 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenuItem load;
     private javax.swing.JMenuItem loadItem;
+    private javax.swing.JMenuItem menuNormal;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
     private javax.swing.JMenuItem pintarItem;

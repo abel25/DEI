@@ -23,6 +23,7 @@ public class Imagen {
     private String pathBlur;
     private String pathGrey;
     private String pathPintar;
+    private String tipo;
     private int heightIcono;
     private int widthIcono;
     private int heightGrande;
@@ -31,8 +32,17 @@ public class Imagen {
     private final int grandeMax=199;
 
     public Imagen() {
+        tipo=null;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public String getPathPintar() {
         return pathPintar;
     }
