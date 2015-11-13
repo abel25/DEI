@@ -69,7 +69,6 @@ public class ImagenVista extends javax.swing.JFrame {
         saveIteam = new javax.swing.JMenuItem();
         loadItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuNormal = new javax.swing.JMenuItem();
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
         pintarItem = new javax.swing.JMenuItem();
@@ -139,7 +138,7 @@ public class ImagenVista extends javax.swing.JFrame {
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGap(0, 236, Short.MAX_VALUE)
         );
         imagePanelLayout.setVerticalGroup(
             imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,10 +149,10 @@ public class ImagenVista extends javax.swing.JFrame {
         panelImagen.setLayout(panelImagenLayout);
         panelImagenLayout.setHorizontalGroup(
             panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelImagenLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImagenLayout.createSequentialGroup()
                 .addContainerGap(135, Short.MAX_VALUE)
-                .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         panelImagenLayout.setVerticalGroup(
             panelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +212,7 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
+        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
         cargarImagen.setText("Add");
         cargarImagen.setName("add"); // NOI18N
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +222,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(cargarImagen);
 
+        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
         saveIteam.setText("Save");
         saveIteam.setName("save"); // NOI18N
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +232,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(saveIteam);
 
+        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
         loadItem.setText("Load");
         loadItem.setName("load"); // NOI18N
         loadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -244,14 +246,6 @@ public class ImagenVista extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
         jMenu2.setName("menu2"); // NOI18N
-
-        menuNormal.setText("Normal");
-        menuNormal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNormalActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menuNormal);
 
         blurItem.setText("Blur");
         blurItem.setName("blur"); // NOI18N
@@ -390,12 +384,6 @@ public class ImagenVista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void menuNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNormalActionPerformed
-        // TODO add your handling code here:
-        imagencontrol.getCurrentImagen().setTipo("normal");
-        pintarArrayImagen();
-    }//GEN-LAST:event_menuNormalActionPerformed
-
     public void pintarArrayImagen() {
         BufferedImage ima;
         try {
@@ -416,18 +404,14 @@ public class ImagenVista extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            switch (imagencontrol.getCurrentImagen().getTipo()) {
-                case "normal":
-                    BufferedImage img = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
-                    imagePanel.setImagen(Scalr.resize(img, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
-                case "blur":
-                    imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
-                case "grey":
-                    imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
+        switch (imagencontrol.getCurrentImagen().getTipo()) {
+            case "null":
+                //BufferedImage img = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
+                //imagePanel.setImagen(Scalr.resize(img, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+            case "blur":
+                imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
+            case "grey":
+                imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
         }
     }
 
@@ -486,7 +470,6 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenuItem load;
     private javax.swing.JMenuItem loadItem;
-    private javax.swing.JMenuItem menuNormal;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
     private javax.swing.JMenuItem pintarItem;
