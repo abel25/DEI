@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
+import Controlador.ImagenControl;
 import Vista.ImagenVista;
+import java.awt.Color;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +35,8 @@ public class TestMenuItems {
     File file2 = new File("src\\main\\resources\\imagenes\\charg.png");
     File file3 = new File("src\\main\\resources\\imagenes\\cuda.png");
     File file4 = new File("src\\main\\resources\\imagenes\\yenko.png");
+    private ImagenControl imagencontrol;
+    private ImagenVista imagenVista;
 
     
 //    @BeforeClass
@@ -45,8 +49,11 @@ public class TestMenuItems {
     
     @Before
     public void setUp() {
-        frame = new FrameFixture(new ImagenVista());
+        imagenVista = new ImagenVista();
+        imagencontrol = imagenVista.getImagencontrol();
+        frame = new FrameFixture(imagenVista);
         frame.show();
+        
     }
     
     @After
@@ -79,6 +86,8 @@ public class TestMenuItems {
         add.click();
         choser.selectFile(file4);
         choser.approve();
+        
+        assertEquals(imagencontrol.getTamaño(), 4);
     }
     
     @Test
@@ -91,11 +100,22 @@ public class TestMenuItems {
     }
     
     @Test
-    public void menuLoad(){
+    public void menuCLoad(){
         JMenuItemFixture menu = frame.menuItem("menu1");
         menu.click();
         JMenuItemFixture load = frame.menuItem("load");
         load.click();
+    }
+    
+    @Test
+    public void menuDelete(){
+        menuCLoad();
+        JMenuItemFixture menu = frame.menuItem("menu1");
+        menu.click();
+        JMenuItemFixture delete = frame.menuItem("delete");
+        delete.click();
+        
+        assertEquals(imagencontrol.getTamaño(), 3);
     }
     
 }

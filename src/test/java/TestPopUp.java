@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Controlador.ImagenControl;
 import Vista.ImagenVista;
 import java.io.File;
 import java.nio.file.Path;
@@ -30,14 +31,15 @@ import org.junit.runners.MethodSorters;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestPopUp {
-    
+
     private FrameFixture frame;
     File file = new File("src\\main\\resources\\imagenes\\chal.png");
     File file2 = new File("src\\main\\resources\\imagenes\\charg.png");
     File file3 = new File("src\\main\\resources\\imagenes\\cuda.png");
     File file4 = new File("src\\main\\resources\\imagenes\\yenko.png");
+    private ImagenControl imagencontrol;
+    private ImagenVista imagenVista;
 
-    
 //    @BeforeClass
 //    public static void setUpClass() {
 //    }
@@ -45,27 +47,28 @@ public class TestPopUp {
 //    @AfterClass
 //    public static void tearDownClass() {
 //    }
-    
     @Before
     public void setUp() {
-        frame = new FrameFixture(new ImagenVista());
+        imagenVista = new ImagenVista();
+        imagencontrol = imagenVista.getImagencontrol();
+        frame = new FrameFixture(imagenVista);
         frame.show();
     }
-    
+
     @After
     public void tearDown() {
         frame.cleanUp();
     }
- 
+
     @Test
-    public void probarPopUpAAdd(){
-        
+    public void probarPopUpAAdd() {
+
         JPanelFixture img = frame.panel("imagePanel");
         img.rightClick();
-        
+
         JMenuItemFixture addp = frame.menuItem("addp");
         addp.click();
-        
+
         JFileChooserFixture choser = frame.fileChooser("choser");
         choser.setCurrentDirectory(file);
         choser.selectFile(file);
@@ -74,67 +77,93 @@ public class TestPopUp {
         img.rightClick();
 
         addp.click();
-        
+
         choser.setCurrentDirectory(file);
         choser.selectFile(file2);
         choser.approve();
-        
+
         img.rightClick();
 
         addp.click();
-        
+
         choser.setCurrentDirectory(file);
         choser.selectFile(file3);
         choser.approve();
-        
+
         img.rightClick();
 
         addp.click();
-        
+
         choser.setCurrentDirectory(file);
         choser.selectFile(file4);
         choser.approve();
+
+        assertEquals(imagencontrol.getTamaño(), 4);
     }
-    
+
     @Test
-    public void probarPopUpBSave(){
+    public void probarPopUpBSave() {
         probarPopUpAAdd();
-        
+
         JPanelFixture img = frame.panel("imagePanel");
         img.rightClick();
-        
+
         JMenuItemFixture savep = frame.menuItem("savep");
         savep.click();
     }
-    
+
     @Test
-    public void probarPopUpCLoad(){
+    public void probarPopUpCLoad() {
         JPanelFixture img = frame.panel("imagePanel");
         img.rightClick();
-        
+
         JMenuItemFixture loadp = frame.menuItem("loadp");
         loadp.click();
     }
     
     @Test
-    public void probarPopUpDLoadBlur(){
+    public void probarPopUpDDelete() {
         probarPopUpCLoad();
-        
         JPanelFixture img = frame.panel("imagePanel");
         img.rightClick();
+
+        JMenuItemFixture dp = frame.menuItem("dp");
+        dp.click();
         
+        assertEquals(imagencontrol.getTamaño(), 3);
+    }
+
+    @Test
+    public void probarPopUpDLoadBlur() {
+        probarPopUpCLoad();
+
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+
         JMenuItemFixture blurp = frame.menuItem("blurp");
         blurp.click();
     }
-    
+
     @Test
-    public void probarPopUpELoadGrey(){
+    public void probarPopUpELoadGrey() {
         probarPopUpCLoad();
-        
+
         JPanelFixture img = frame.panel("imagePanel");
         img.rightClick();
-        
+
         JMenuItemFixture greyp = frame.menuItem("greyp");
         greyp.click();
     }
+
+    @Test
+    public void probarPopUpELoadPintar() {
+        probarPopUpCLoad();
+
+        JPanelFixture img = frame.panel("imagePanel");
+        img.rightClick();
+
+        JMenuItemFixture pintar = frame.menuItem("pintar");
+        pintar.click();
+    }
+
 }

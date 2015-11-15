@@ -38,11 +38,23 @@ public class ArrayImagen {
         imagenes.add(imagen);
         imagen.dimensionar();
     }
+    
+    public void removeImagen(Imagen imagen){
+        imagenes.remove(imagen);
+    }
+    
+    public void removeAll(){
+        imagenes.remove(0);
+    }
 
     public int getTamaño() {
         return imagenes.size();
     }
 
+    public String obtenerTipo() {
+        return imagenes.get(currentIndexImagen).getTipo();
+    }
+    
     public Imagen getImage(int index) {
         return imagenes.get(index);
     }

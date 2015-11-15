@@ -43,6 +43,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="delete">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="name" type="java.lang.String" value="dp" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <Component class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+        </Component>
         <MenuItem class="javax.swing.JMenuItem" name="blur">
           <Properties>
             <Property name="text" type="java.lang.String" value="Blur"/>
@@ -61,6 +72,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="greyActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="pintar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pintar"/>
+            <Property name="name" type="java.lang.String" value="pintar" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pintarActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
@@ -77,7 +97,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="cargarImagen">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\dam2\Documents\GitHub\CarruselAbel\src\main\resources\imagenes\add.png"/>
+                  <Image iconType="3" name="/imagenes/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
                 <Property name="name" type="java.lang.String" value="add" noResource="true"/>
@@ -89,7 +109,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="saveIteam">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\dam2\Documents\GitHub\CarruselAbel\src\main\resources\imagenes\save.png"/>
+                  <Image iconType="3" name="/imagenes/save.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
                 <Property name="name" type="java.lang.String" value="save" noResource="true"/>
@@ -101,13 +121,26 @@
             <MenuItem class="javax.swing.JMenuItem" name="loadItem">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\dam2\Documents\GitHub\CarruselAbel\src\main\resources\imagenes\load.png"/>
+                  <Image iconType="3" name="/imagenes/load.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Load"/>
                 <Property name="name" type="java.lang.String" value="load" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="deleteItem">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagenes/delete.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Delete"/>
+                <Property name="name" type="java.lang.String" value="delete" noResource="true"/>
+                <Property name="requestFocusEnabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -139,6 +172,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="pintarItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pintar"/>
+                <Property name="name" type="java.lang.String" value="pintarItem" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pintarItemActionPerformed"/>

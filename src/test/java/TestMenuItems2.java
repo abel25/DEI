@@ -95,4 +95,16 @@ public class TestMenuItems2 {
         grey.click();
     }
     
+    @Test
+    public void menuLoadPintar(){
+        JMenuItemFixture menu = frame.menuItem("menu1");
+        menu.click();
+        JMenuItemFixture load = frame.menuItem("load");
+        load.click();
+        JMenuItemFixture menu2 = frame.menuItem("menu2");
+        menu2.click();
+        JMenuItemFixture p = frame.menuItem("pintarItem");
+        p.click();
+    }
+    
 }

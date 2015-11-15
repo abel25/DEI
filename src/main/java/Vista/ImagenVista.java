@@ -39,6 +39,9 @@ public class ImagenVista extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
+    public ImagenControl getImagencontrol() {
+        return imagencontrol;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,8 +56,11 @@ public class ImagenVista extends javax.swing.JFrame {
         cargar = new javax.swing.JMenuItem();
         load = new javax.swing.JMenuItem();
         save = new javax.swing.JMenuItem();
+        delete = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         blur = new javax.swing.JMenuItem();
         grey = new javax.swing.JMenuItem();
+        pintar = new javax.swing.JMenuItem();
         panelImagen = new javax.swing.JPanel();
         imagePanel = new Vista.ImagePanel();
         panelBotones = new javax.swing.JPanel();
@@ -68,6 +74,7 @@ public class ImagenVista extends javax.swing.JFrame {
         cargarImagen = new javax.swing.JMenuItem();
         saveIteam = new javax.swing.JMenuItem();
         loadItem = new javax.swing.JMenuItem();
+        deleteItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         blurItem = new javax.swing.JMenuItem();
         greyItem = new javax.swing.JMenuItem();
@@ -104,6 +111,16 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         jPopupMenu1.add(save);
 
+        delete.setText("Delete");
+        delete.setName("dp"); // NOI18N
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(delete);
+        jPopupMenu1.add(jSeparator1);
+
         blur.setText("Blur");
         blur.setName("blurp"); // NOI18N
         blur.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +138,15 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
         jPopupMenu1.add(grey);
+
+        pintar.setText("Pintar");
+        pintar.setName("pintar"); // NOI18N
+        pintar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pintarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(pintar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -212,7 +238,7 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
 
-        cargarImagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\add.png")); // NOI18N
+        cargarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/add.png"))); // NOI18N
         cargarImagen.setText("Add");
         cargarImagen.setName("add"); // NOI18N
         cargarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +248,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(cargarImagen);
 
-        saveIteam.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\save.png")); // NOI18N
+        saveIteam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
         saveIteam.setText("Save");
         saveIteam.setName("save"); // NOI18N
         saveIteam.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +258,7 @@ public class ImagenVista extends javax.swing.JFrame {
         });
         cargarImg.add(saveIteam);
 
-        loadItem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dam2\\Documents\\GitHub\\CarruselAbel\\src\\main\\resources\\imagenes\\load.png")); // NOI18N
+        loadItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/load.png"))); // NOI18N
         loadItem.setText("Load");
         loadItem.setName("load"); // NOI18N
         loadItem.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +267,17 @@ public class ImagenVista extends javax.swing.JFrame {
             }
         });
         cargarImg.add(loadItem);
+
+        deleteItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
+        deleteItem.setText("Delete");
+        deleteItem.setName("delete"); // NOI18N
+        deleteItem.setRequestFocusEnabled(false);
+        deleteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteItemActionPerformed(evt);
+            }
+        });
+        cargarImg.add(deleteItem);
 
         jMenuBar1.add(cargarImg);
 
@@ -266,6 +303,7 @@ public class ImagenVista extends javax.swing.JFrame {
         jMenu2.add(greyItem);
 
         pintarItem.setText("Pintar");
+        pintarItem.setName("pintarItem"); // NOI18N
         pintarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pintarItemActionPerformed(evt);
@@ -331,7 +369,6 @@ public class ImagenVista extends javax.swing.JFrame {
         imagencontrol.getCurrentImagen().setTipo("grey");
         pintarArrayImagen();
         //imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
-        //imagePanel.setImagen(imagencontrol.blurImagen(ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()))));
     }//GEN-LAST:event_greyItemActionPerformed
 
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
@@ -384,6 +421,26 @@ public class ImagenVista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    private void deleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItemActionPerformed
+        // TODO add your handling code here:
+        if (imagencontrol.getTamaño() == 1) {
+            imagencontrol.borrarTodo();
+        } else {
+            imagencontrol.borrarImagen(imagencontrol.getCurrentImagen());
+            pintarArrayImagen();
+        }
+    }//GEN-LAST:event_deleteItemActionPerformed
+
+    private void pintarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pintarActionPerformed
+        // TODO add your handling code here:
+        pintarItemActionPerformed(evt);
+    }//GEN-LAST:event_pintarActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        deleteItemActionPerformed(evt);
+    }//GEN-LAST:event_deleteActionPerformed
+
     public void pintarArrayImagen() {
         BufferedImage ima;
         try {
@@ -401,17 +458,21 @@ public class ImagenVista extends javax.swing.JFrame {
                     BufferedImage im = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
                     imagePanel.setImagen(Scalr.resize(im, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
             }
+
+            switch (imagencontrol.tipo()) {
+                default: break;
+                    //BufferedImage img = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
+                    //imagePanel.setImagen(Scalr.resize(img, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
+                case "blur":
+                    imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
+                    break;
+                case "grey":
+                    imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
+                    break;
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(ImagenVista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        switch (imagencontrol.getCurrentImagen().getTipo()) {
-            case "null":
-                //BufferedImage img = ImageIO.read(new File(imagencontrol.getCurrentImagen().getPathImagen()));
-                //imagePanel.setImagen(Scalr.resize(img, Scalr.Mode.AUTOMATIC, imagencontrol.getCurrentImagen().getWidthGrande(), imagencontrol.getCurrentImagen().getHeightGrande(), null));
-            case "blur":
-                imagePanel.setImagen(imagencontrol.blurImagen(imagePanel.getImagen()));
-            case "grey":
-                imagePanel.setImagen(imagencontrol.greyScaleImagen(imagePanel.getImagen()));
         }
     }
 
@@ -461,6 +522,8 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JLabel casilla1;
     private javax.swing.JLabel casilla2;
     private javax.swing.JLabel casilla3;
+    private javax.swing.JMenuItem delete;
+    private javax.swing.JMenuItem deleteItem;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem grey;
     private javax.swing.JMenuItem greyItem;
@@ -468,10 +531,12 @@ public class ImagenVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem load;
     private javax.swing.JMenuItem loadItem;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelImagen;
+    private javax.swing.JMenuItem pintar;
     private javax.swing.JMenuItem pintarItem;
     private javax.swing.JMenuItem save;
     private javax.swing.JMenuItem saveIteam;
